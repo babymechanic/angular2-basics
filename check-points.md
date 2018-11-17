@@ -32,5 +32,9 @@
     - adding more chaining would make it hard to read
 ### Step 5
   - Async Await
+### Step 6
+  - Tasks 
+    - Make the line items use product now
+    - Make a new method on the service to add a new product and check if the it exists on the all list now. 
     
    
