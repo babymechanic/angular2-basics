@@ -23,6 +23,8 @@
   - issues
     - writing tests makes after the code is written is a little harder
     - might not have context on existing code
-
+### Step 4
+  - We want to be able to select from a list of available products to make it a bit more interesting
+  - lets try TDD
     
    
