@@ -6,6 +6,12 @@ export class OrderReceipt {
   }
 
   printReceipt(): string {
-    return this.order.printAsString();
+    return [
+      '======Printing Orders======\n',
+      this.order.printCustomerDetails(),
+      this.order.printItemDetails(),
+      this.order.printSalesTax(),
+      this.order.printTotal(),
+    ].join('');
   }
 }

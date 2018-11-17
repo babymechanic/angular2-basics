@@ -8,39 +8,29 @@ export class Order {
 
   }
 
-  printAsString(): string {
-    const output: string[] = [];
-    this.printHeader(output);
-    this.printCustomerDetails(output);
-    this.printItemDetails(output);
-    this.printSalesTax(output);
-    this.printTotal(output);
-    return output.join('');
+  printItemDetails(): string {
+    return this.lineItems.reduce((acc: string[], lineItem: LineItem) => {
+      acc.push(lineItem.printItemDetails());
+      return acc;
+    }, []).join('');
   }
 
-  private printItemDetails(output: string[]) {
-    this.lineItems.forEach((lineItem) => output.push(lineItem.printItemDetails()));
+  printTotal(): string {
+    return ['Total Amount',
+      '\t',
+      this.totalIncludingSalesTax.toString()
+    ].join('');
   }
 
-  private printTotal(output: string[]) {
-    output.push('Total Amount');
-    output.push('\t');
-    output.push(this.totalIncludingSalesTax.toString());
+  printSalesTax(): string {
+    return ['Sales Tax',
+      '\t',
+      this.totalSalesTax.toString()
+    ].join('');
   }
 
-  private printSalesTax(output: string[]) {
-    output.push('Sales Tax');
-    output.push('\t');
-    output.push(this.totalSalesTax.toString());
-  }
-
-  private printCustomerDetails(output: string[]) {
-    output.push(this.customerName);
-    output.push(this.address);
-  }
-
-  private printHeader(output: string[]) {
-    output.push('======Printing Orders======\n');
+  printCustomerDetails(): string {
+    return `${this.customerName}, ${this.address}`;
   }
 
   private get totalSalesTax(): number {

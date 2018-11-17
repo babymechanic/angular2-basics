@@ -1,3 +1,5 @@
+const salesTax = .10;
+
 export class LineItem {
 
   constructor(public readonly description: string,
@@ -10,7 +12,7 @@ export class LineItem {
   }
 
   get salesTax(): number {
-    return this.totalAmount * .10;
+    return this.totalAmount * salesTax;
   }
 
   get totalAmountIncludingTax(): number {
