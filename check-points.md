@@ -20,5 +20,9 @@
   - in testing how do we?
     - prevent retesting existing code which has tests
     - make it easier to test classes with dependencies
+  - issues
+    - writing tests makes after the code is written is a little harder
+    - might not have context on existing code
+
     
    

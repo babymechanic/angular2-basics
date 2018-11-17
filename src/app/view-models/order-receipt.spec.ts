@@ -1,37 +1,25 @@
 import {Order} from './order';
 import {OrderReceipt} from './order-receipt';
-import {LineItem} from './line-item';
 
 describe('OrderReceipt', () => {
 
   describe('#printReceipt', () => {
 
-    it('should print customer information on order', () => {
-      const order = new Order('Mr X', 'Chicago, 60601', []);
+    it('should print thr receipt in the right format', () => {
+      const order = new Order('', '', []);
       const receipt = new OrderReceipt(order);
+      const customerDetails = 'customerDetails';
+      spyOn(order, 'printCustomerDetails').and.returnValue(customerDetails);
+      const itemDetails = 'itemDetails';
+      spyOn(order, 'printItemDetails').and.returnValue(itemDetails);
+      const salesTax = 'salesTax';
+      spyOn(order, 'printSalesTax').and.returnValue(salesTax);
+      const total = 'total';
+      spyOn(order, 'printTotal').and.returnValue(total);
 
       const output = receipt.printReceipt();
 
-      expect(output).toContain('Mr X');
-      expect(output).toContain('Chicago, 60601');
-    });
-
-    it('should print line item and sales tax information', () => {
-
-      const lineItems = [
-        new LineItem('milk', 10.0, 2),
-        new LineItem('biscuits', 5.0, 5),
-        new LineItem('chocolate', 20.0, 1)
-      ];
-      const receipt = new OrderReceipt(new Order(null, null, lineItems));
-
-      const output = receipt.printReceipt();
-
-      expect(output).toContain('milk\t10\t2\t20\n');
-      expect(output).toContain('biscuits\t5\t5\t25\n');
-      expect(output).toContain('chocolate\t20\t1\t20\n');
-      expect(output).toContain('Sales Tax\t6.5');
-      expect(output).toContain('Total Amount\t71.5');
+      expect(output).toEqual(`======Printing Orders======\n${customerDetails}${itemDetails}${salesTax}${total}`);
     });
 
   });
