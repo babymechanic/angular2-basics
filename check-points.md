@@ -27,5 +27,10 @@
   - We want to be able to select from a list of available products to make it a bit more interesting
   - lets try TDD
   - the service returns a promise which is used heavily in javascript
+  -Issues
+    - The code is a little harder to read with the `then` chain
+    - adding more chaining would make it hard to read
+### Step 5
+  - Async Await
     
    
