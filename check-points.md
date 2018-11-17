@@ -16,4 +16,9 @@
   - Issues
     - It looks like we are retesting the code which is already tested
     - getting difficult to write a test for some thing which depends on another class
+### Step 3
+  - in testing how do we?
+    - prevent retesting existing code which has tests
+    - make it easier to test classes with dependencies
+    
    
