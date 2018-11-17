@@ -1,23 +1,32 @@
 export class LineItem {
 
-  constructor(private desc: string,
-              private p: number,
-              private qty: number) {
+  constructor(public readonly description: string,
+              public readonly price: number,
+              public readonly quantity: number) {
   }
 
-  GetDescription() {
-    return this.desc;
+  private get totalAmount(): number {
+    return this.price * this.quantity;
   }
 
-  GetPrice() {
-    return this.p;
+  get salesTax(): number {
+    return this.totalAmount * .10;
   }
 
-  GetQuantity() {
-    return this.qty;
+  get totalAmountIncludingTax(): number {
+    return this.totalAmount + this.salesTax;
   }
 
-  TotalAmount() {
-    return this.p * this.qty;
+  printItemDetails(): string {
+    return [
+      this.description,
+      '\t',
+      this.price.toString(),
+      '\t',
+      this.quantity.toString(),
+      '\t',
+      this.totalAmount.toString(),
+      '\n'
+    ].join('');
   }
 }
